@@ -1,12 +1,15 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
+import { MOVIE } from '../../apis/types'
 
 interface InitialState{
-    itemsInBag: number
+    itemsInBag: number,
+    movieInfo: MOVIE | undefined;
 }
 
 const initialState: InitialState = {
-    itemsInBag: 0
+    itemsInBag: 0,
+    movieInfo: undefined
 }
 
 const active = createSlice({
@@ -15,10 +18,13 @@ const active = createSlice({
     reducers: {
         addItemToBag: (state, action: PayloadAction<number>) => {
             state.itemsInBag= action.payload;
+        },
+        setMovieInfo:(state, action: PayloadAction<MOVIE | undefined>)=>{
+            state.movieInfo = action.payload
         }
     },
 });
 
-export const { addItemToBag } = active.actions;
+export const { addItemToBag, setMovieInfo } = active.actions;
 
 export default active.reducer;

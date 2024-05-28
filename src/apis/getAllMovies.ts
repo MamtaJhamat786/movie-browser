@@ -1,7 +1,7 @@
 import { config } from '../config';
-import {MOVIES} from './types'
+import { MOVIES } from './types'
 
-export const allMovies = async(url: string) => {
+export const allMovies = async(url: string): Promise<MOVIES> => {
     const {  apiToken } = config;
     const options = {
         method: 'GET',

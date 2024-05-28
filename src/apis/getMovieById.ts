@@ -1,8 +1,8 @@
 import { config } from '../config';
+import { MOVIE } from './types'
 
 
-
-export const  getMovieById = async (movieId: number)=> {
+export const  getMovieById = async (movieId: number): Promise<MOVIE>=> {
     const {  apiKey, apiFindByIdUrl } = config;
     const url = `${apiFindByIdUrl}/${movieId}?api_key=${apiKey}`;
     try {

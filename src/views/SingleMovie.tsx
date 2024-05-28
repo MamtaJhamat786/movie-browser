@@ -15,12 +15,19 @@ const SingleMovie: React.FC = () => {
     const item = useAppSelector((s) => s.active.itemsInBag);
     const dispatch = useAppDispatch();
 
-    const { data } = useGetMovieById(Number(id));
-    console.log(id, data);
+    const movie = useAppSelector((state) => state.active.movieInfo);
+      // Fetch movie data using useGetMovieById hook if not available in Redux
+      const { data } = useGetMovieById(Number(id));
 
+        // Check if the movie data is available
+    const movieData = movie || data ; // use the data from the API only when the page is reloaded and not available in redux, if only redux will be usedm data will be lost after refresh
     const { apiBaseImageUrl } = config;
+
     const cardStyles= {
         aspectRatio: '3/3'
+    }
+    const handleAddToBag = () => {
+        dispatch(addItemToBag(item + 1))
     }
     return (
         <Box
@@ -38,24 +45,26 @@ const SingleMovie: React.FC = () => {
                 <Card>
                     <CustomCardMedia
                         styles={cardStyles}
-                        backdropPath={data?.backdrop_path}
-                        posterPath={data?.poster_path}
                         apiBaseImageUrl={apiBaseImageUrl}
+                        title={movieData?.title}
+                        backdropPath={movieData?.backdrop_path}
+                        posterPath={movieData?.poster_path}
+                        
                     />
                 </Card>
             </Box>
             <Box display='flex' gap='14px' flexDirection='column' alignItems={mobileView ? 'center' : 'start'} width={mobileView ? '100%' : '50%'}>
                 <Typography display='flex' fontSize='20px' fontWeight='700' sx={{ wordBreak: 'break-word' }}>
-                    {data?.original_title ?? ''}
+                    {movieData?.original_title ?? ''}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '10px' }}>
                     <Typography fontSize='14px' sx={{ lineHeight: 1.3 }} >
-                        {data?.overview ?? ''}
+                        {movieData?.overview ?? ''}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: '10px' }}>
                     <Typography fontSize='20px' sx={{ lineHeight: 1.3 }} >
-                        Released on {data?.release_date}
+                        Released on {movieData?.release_date}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: '10px' }}>
@@ -63,7 +72,7 @@ const SingleMovie: React.FC = () => {
                         startIcon={<ShoppingCartRoundedIcon />}
                         color='success'
                         variant='contained'
-                        onClick={() => dispatch(addItemToBag(item + 1))}
+                        onClick={handleAddToBag}
                         sx={{ fontSize: '16px', minWidth: '24px' }}
                     >
                         Buy Tickets
@@ -74,4 +83,4 @@ const SingleMovie: React.FC = () => {
     );
 }
 
-export default SingleMovie;
+export default React.memo(SingleMovie);

@@ -1,4 +1,4 @@
-import {Box, outlinedInputClasses, styled, TextField, Typography} from "@mui/material";
+import { Box, outlinedInputClasses, styled, TextField, Typography } from "@mui/material";
 
 export const StyledTypography = styled(Typography)`
   color: white;
