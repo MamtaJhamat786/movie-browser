@@ -4,14 +4,7 @@ export const StyledTypography = styled(Typography)`
   color: white;
   text-align: start;
 `;
-export const StyledBox = styled(Box)`
-  background-color: black;
-  height: 100vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: row;
-  padding: 20px;
-`;
+
 export const StyledTextField = styled(TextField)`
   & .${outlinedInputClasses.root} {
     border-radius: 20px;
@@ -19,4 +12,14 @@ export const StyledTextField = styled(TextField)`
   & .${outlinedInputClasses.input} {
     background-color: white;
   }
+`;
+
+export const StyledBox = styled(Box)`
+    display: flex;
+    gap: 10px;
+    width: inherit;
+    flex-direction: column;
+    margin-top: 15px;
+    background-color: white;
+    padding: 10px;
 `;

@@ -9,7 +9,7 @@ import { useDebounce } from 'use-debounce';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { MOVIE } from '../apis/types';
 import { useAppDispatch } from "../store";
-import { StyledTextField } from "../components/styledComponents/styles";
+import { StyledTextField, StyledBox } from "../components/styledComponents/styles";
 import { config } from '../config';
 import { setMovieInfo } from "../store/active/reducer";
 import { useGetAllMovies } from "../hooks/useGetAllMovies";
@@ -59,7 +59,7 @@ const Movies: React.FC = () => {
     };
 
     return (
-        <Box display='flex' gap='10px' width='inherit' flexDirection='column' sx={{ marginTop: '15px', backgroundColor: 'white', padding: '10px' }}>
+        <StyledBox>
             <Typography variant="subtitle1" display='flex'>List of Movies</Typography>
 
             <StyledTextField
@@ -129,7 +129,7 @@ const Movies: React.FC = () => {
                     </Box>
                 </>
             )}
-        </Box>
+        </StyledBox>
     );
 }
 
