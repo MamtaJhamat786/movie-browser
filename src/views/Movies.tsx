@@ -1,7 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { Typography, Box, Pagination, TextField, CircularProgress } from "@mui/material";
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import {  Pagination, CircularProgress } from "@mui/material";
 import CustomCardMedia from '../components/CustomCardMedia';
 import { Link } from "react-router-dom";
 import { DEBOUNCE_DELAY } from '../constants';
@@ -13,6 +11,7 @@ import { config } from '../config';
 import { setMovieInfo } from "../store/active/reducer";
 import { useGetAllMovies } from "../apis/hooks/useGetAllMovies";
 import  ErrorBoundary  from '../components/ErrorBoundary'
+import '../Movies.scss'
 
 
 // static data outside of component
@@ -41,12 +40,19 @@ const Movies: React.FC = () => {
 
     const handleTextFieldChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
-        setPageInput(value);
-        const pageNumber = Number(value);
-        if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= (data?.total_pages || 1)) {
-            setPage(pageNumber);
+        if (value === '') {
+            setPageInput(value); // Clear the input field
+            setPage(1); // Reset page to 1 when input is cleared
+        } else {
+            const pageNumber = Number(value);
+            if (!isNaN(pageNumber) && pageNumber >= 1 && pageNumber <= (data?.total_pages || 1)) {
+                setPage(pageNumber);
+                setPageInput(value); // Update pageInput only when the value is valid
+            }
         }
     }, [data?.total_pages]);
+    
+    
 
     useEffect(() => {
         setPageInput(String(page)); // Sync input with page state on data change
@@ -56,83 +62,66 @@ const Movies: React.FC = () => {
         dispatch(setMovieInfo(movie));
     };
 
-    const cardStyles = {
-        width: mobileView ? '100%' : '220px',
-        height: '99%',
-        display: mobileView ? 'flex' : ''
-    };
-
     return (
         <ErrorBoundary fallback={<p>We couldn't find any movies. Please try again later.</p>}>
-            <Box display='flex' gap='10px' width='inherit' flexDirection='column' sx={{ marginTop: '15px', backgroundColor: 'white', padding: '10px' }}>
-                <Typography display='flex'>List of Movies</Typography>
-                <TextField
+            <div className="flex-col gap-10 movies-container">
+                <span>List of Movies</span>
+                <input 
+                    className="field-input"
                     value={search}
                     onChange={handleInputChange}
-                    size="small"
                     autoComplete="off"
-                    label={mobileView ? 'Search' : 'Search for movies'}
-                    variant="outlined"
+                    placeholder={mobileView ? 'Search' : 'Search for movies'}
                 />
                 {isLoading ? (
-                    <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                    <div className="circular-progress-box">
                         <CircularProgress />
-                    </Box>
+                    </div>
                 ) : isError ? (
-                    <Typography color="error">Error loading movies. Please try again.</Typography>
+                    <span>Error loading movies. Please try again.</span>
                 ) : (
                     <>
-                        <Box
-                            display='grid'
-                            gap='10px'
-                            rowGap='10px'
-                            columnGap='20px'
-                            gridTemplateColumns={mobileView ? '1fr' : 'repeat(auto-fit, minmax(200px, 1fr))'}
-                            sx={{ overflowX: 'scroll' }}
-                        >
+                        <div className="img-grid">
                             {data?.results && data.results.length > 0 ? (
                                 data.results.map((movie: Movie) => (
                                     <Link to={`/movies/${movie.id}`} key={movie.id} style={{ textDecoration: 'none' }}>
-                                        <Card onClick={() => handleCardClick(movie)} key={movie.id}>
+                                        <div className="img-card" onClick={() => handleCardClick(movie)} key={movie.id}>
                                             <CustomCardMedia
-                                                styles={cardStyles}
                                                 apiBaseImageUrl={apiBaseImageUrl}
                                                 title={movie?.title}
                                                 backdropPath={movie.backdrop_path}
                                                 posterPath={movie.poster_path}
                                             />
-                                            <CardContent>
-                                                <Box display='flex' alignItems="start" flexDirection={mobileView ? 'column-reverse' : 'column'}>
-                                                    <Typography sx={{ wordBreak: 'break-word' }} gutterBottom fontSize='16px'>
-                                                        {movie?.title}
-                                                    </Typography>
-                                                    <Typography gutterBottom fontSize='14px'>
-                                                        {movie?.release_date}
-                                                    </Typography>
-                                                </Box>
-                                            </CardContent>
-                                        </Card>
+                                            <div className="img-card-content">
+                                                <span className="word-break font-16 black">
+                                                    {movie?.title}
+                                                </span>
+                                                <span className="font-14 black">
+                                                    {movie?.release_date}
+                                                </span>
+                                            </div>
+                                        </div>
                                     </Link>
                                 ))
                             ) : (
-                                <Typography>No movies found</Typography>
+                                <span>No movies found</span>
                             )}
-                        </Box>
-                        <Box sx={{ justifyContent: 'center', display: 'flex', gap: '10px', marginTop: '10px', flexDirection: mobileView ? 'column': 'row' }}>
+                        </div>
+                        <div className="flex gap-10 mt-10 justify-center">
                             <Pagination count={data?.total_pages} page={page} onChange={handlePageChange} />
-                            <TextField 
+                            <input 
+                                className="field-input"
                                 type="number"
                                 value={pageInput}
-                                InputProps={{ inputProps: { min: 1, max: data?.total_pages || 1 } }} // Set max dynamically
+                                min={1}
+                                max={data?.total_pages || 1}
                                 onChange={handleTextFieldChange}
-                                size="small"
                                 autoComplete="off"
-                                variant="outlined"
                             />
-                        </Box>
+                        </div>
                     </>
                 )}
-            </Box>
+            </div>
         </ErrorBoundary>
     );
 }

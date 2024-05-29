@@ -1,0 +1,148 @@
+@media(max-width: 600px) {
+    .img-card-content{
+        flex-direction: column-reverse;
+    }
+    #single-card{
+        flex-direction: column;
+        width: auto;
+    }
+    .single-img-card{
+        width: 50%;
+    }
+}
+.movies-container {
+    width: inherit;
+    margin-top: 15px;
+    background-color: white;
+    padding: 10px;
+}
+.img-grid{
+    display: grid;
+    row-gap: 10px;
+    column-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    overflow-x: scroll;
+}
+.img-card{
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+.img-styles{
+    width: 100%;
+}
+
+.img-card-content{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    gap: 6px;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+.flex-col{
+    display: flex;
+    flex-direction: column;
+}
+.justify-center{
+    justify-content: center;
+}
+.add-to-cart{
+    background-color: rgb(22, 110, 232);
+    border: transparent;
+    color: white;
+    border-radius: 5px;
+    height: 34px;
+    padding: 12px;
+    cursor: pointer;
+}
+.cart-icon {
+    margin-left: 8px;
+}
+
+.justify-space-between{
+    justify-content: space-between;
+}
+.align-center{
+    align-items: center;
+}
+.single-card-content{
+    align-items: start;
+}
+.gap-10{
+    gap: 10px;
+}
+.gap-20{
+    gap: 20px;
+}
+.mt-10{
+    margin: 20px;
+}
+.mt-20{
+    margin: 20px;
+}
+.m-auto{
+    margin: auto;
+}
+.width-70{
+    width: 70%;
+}
+.single-img-card{
+    width: 100%;
+}
+.p-30{
+    padding: 30px;
+}
+.single-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.field-input{
+    padding: 9px 6px;
+    border: 1px solid lightgray;
+    height: 24px;
+    border-radius: 5px;
+}
+.app-bar {
+    position: static;
+    background: antiquewhite;
+    padding: 0 20px;
+}
+.circular-progress-box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.font-weight-700{
+    font-weight: 700;
+}
+.word-break{
+    word-break: break-word;
+}
+.font-16{
+    font-size: 16px;
+}
+.min-width-24{
+    min-width: 24px;
+}
+.font-bold{
+    font-weight: bold;
+}
+.font-20{
+    font-size: 20px;
+}
+.font-24{
+    font-size: 24px;
+}
+.font-14{
+    font-size: 14px;
+}
+.black{
+    color: black;
+}
+  

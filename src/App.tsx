@@ -9,15 +9,12 @@ const queryClient = new QueryClient()
 function App() {
 
   return (
-    <div>
-        <QueryClientProvider client={queryClient}>
-            <Provider store={store}>
-              <NavBar />
-              <AppRoutes/>
-            </Provider >
-        </QueryClientProvider>
-
-    </div>
+    <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <NavBar />
+          <AppRoutes/>
+        </Provider >
+    </QueryClientProvider>
   );
 }
 
