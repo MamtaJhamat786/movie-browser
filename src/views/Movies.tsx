@@ -4,7 +4,6 @@ import CustomCardMedia from '../components/CustomCardMedia';
 import { Link } from "react-router-dom";
 import { DEBOUNCE_DELAY } from '../constants';
 import { useDebounce } from 'use-debounce';
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { Movie } from '../apis/types';
 import { useAppDispatch } from "../store";
 import { config } from '../config';
@@ -19,7 +18,6 @@ const { apiBaseImageUrl } = config;
 
 const Movies: React.FC = () => {
 
-    const mobileView = useMediaQuery('(max-width:600px)');
     const [search, setSearch] = useState<string>('');
     const [page, setPage] = useState<number>(1);
     const [pageInput, setPageInput] = useState<string>(String(page)); // Local state for input
@@ -71,7 +69,7 @@ const Movies: React.FC = () => {
                     value={search}
                     onChange={handleInputChange}
                     autoComplete="off"
-                    placeholder={mobileView ? 'Search' : 'Search for movies'}
+                    placeholder="Search movie"
                 />
                 {isLoading ? (
                     <div className="circular-progress-box">
