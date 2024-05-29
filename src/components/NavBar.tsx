@@ -29,7 +29,7 @@ export const NavBar :React.FC =()=> {
                     <Typography onClick={setMovieEmpty} fontWeight='700' sx={{color: 'red',  fontSize: '24px', fontFamily: 'Segoe UI'}}>TMDB</Typography>
                 </Link>
                 <Badge color="primary" badgeContent={item}>
-                    <AddShoppingCartRoundedIcon sx={{color: 'black'}}/>
+                        <AddShoppingCartRoundedIcon sx={{color: 'black'}}/>
                 </Badge>
             </Box>
         </AppBar>

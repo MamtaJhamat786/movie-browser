@@ -9,7 +9,6 @@ import { useDebounce } from 'use-debounce';
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { MOVIE } from '../apis/types';
 import { useAppDispatch } from "../store";
-import { StyledTextField, StyledBox } from "../components/styledComponents/styles";
 import { config } from '../config';
 import { setMovieInfo } from "../store/active/reducer";
 import { useGetAllMovies } from "../hooks/useGetAllMovies";
@@ -59,10 +58,9 @@ const Movies: React.FC = () => {
     };
 
     return (
-        <StyledBox>
-            <Typography variant="subtitle1" display='flex'>List of Movies</Typography>
-
-            <StyledTextField
+        <Box display='flex' gap='10px' width='inherit' flexDirection='column' sx={{ marginTop: '15px', backgroundColor: 'white', padding: '10px' }}>
+            <Typography display='flex'>List of Movies</Typography>
+            <TextField
                 value={search}
                 onChange={handleInputChange}
                 size="small"
@@ -70,7 +68,6 @@ const Movies: React.FC = () => {
                 label={mobileView ? 'Search' : 'Search for movies'}
                 variant="outlined"
             />
-
             {isLoading ? (
                 <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
                     <CircularProgress />
@@ -115,7 +112,7 @@ const Movies: React.FC = () => {
                             <Typography>No movies found</Typography>
                         )}
                     </Box>
-                    <Box sx={{ justifyContent: 'center', display: 'flex', gap: '10px', marginTop: '10px' }}>
+                    <Box sx={{ justifyContent: 'center', display: 'flex', gap: '10px', marginTop: '10px', flexDirection: mobileView ? 'column': 'row' }}>
                         <Pagination count={data?.total_pages} page={page} onChange={handlePageChange} />
                         <TextField 
                             type="number"
@@ -129,7 +126,7 @@ const Movies: React.FC = () => {
                     </Box>
                 </>
             )}
-        </StyledBox>
+        </Box>
     );
 }
 

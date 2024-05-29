@@ -13,6 +13,7 @@ export const allMovies = async(url: string): Promise<MOVIES> => {
     
     const response = await fetch(url, options);
     const data = await response.json();
-    return data as MOVIES;
+    data.results = data.results.slice(0, 10);
+    return data;
 };
   
