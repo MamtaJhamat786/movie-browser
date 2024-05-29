@@ -1,12 +1,12 @@
 
-export interface MOVIES {
+export interface Movies {
     page: number;
-    results: MOVIE[];
+    results: Movie[];
     total_pages: number;
     total_results: number
     
   }
-  export interface MOVIE {
+  export interface Movie {
     adult:             boolean;
     backdrop_path:     string;
     genre_ids:         number[];

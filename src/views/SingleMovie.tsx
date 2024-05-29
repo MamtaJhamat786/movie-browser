@@ -1,13 +1,15 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 import { Box, Typography, Button, Card } from "@mui/material";
-import { useGetMovieById } from '../hooks/useGetMovieById';
+import { useGetMovieById } from '../apis/hooks/useGetMovieById';
 import CustomCardMedia from '../components/CustomCardMedia'
 import ShoppingCartRoundedIcon from '@mui/icons-material/ShoppingCartRounded';
 import { addItemToBag } from "../store/active/reducer";
 import { useAppDispatch, useAppSelector } from "../store";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { config } from '../config';
+
+const { apiBaseImageUrl } = config;
 
 const SingleMovie: React.FC = () => {
     const { id } = useParams();
@@ -21,7 +23,7 @@ const SingleMovie: React.FC = () => {
 
         // Check if the movie data is available
     const movieData = movie || data ; // use the data from the API only when the page is reloaded and not available in redux, if only redux will be usedm data will be lost after refresh
-    const { apiBaseImageUrl } = config;
+    
 
     const cardStyles= {
         aspectRatio: '3/3'
@@ -29,6 +31,7 @@ const SingleMovie: React.FC = () => {
     const handleAddToBag = () => {
         dispatch(addItemToBag(item + 1))
     }
+    if (!movieData) return null;
     return (
         <Box
             sx={{
@@ -46,25 +49,25 @@ const SingleMovie: React.FC = () => {
                     <CustomCardMedia
                         styles={cardStyles}
                         apiBaseImageUrl={apiBaseImageUrl}
-                        title={movieData?.title}
-                        backdropPath={movieData?.backdrop_path}
-                        posterPath={movieData?.poster_path}
+                        title={movieData.title}
+                        backdropPath={movieData.backdrop_path}
+                        posterPath={movieData.poster_path}
                         
                     />
                 </Card>
             </Box>
             <Box display='flex' gap='14px' flexDirection='column' alignItems={mobileView ? 'center' : 'start'} width={mobileView ? '100%' : '50%'}>
                 <Typography display='flex' fontSize='20px' fontWeight='700' sx={{ wordBreak: 'break-word' }}>
-                    {movieData?.original_title ?? ''}
+                    {movieData.original_title ?? ''}
                 </Typography>
                 <Box sx={{ display: 'flex', gap: '10px' }}>
                     <Typography fontSize='14px' sx={{ lineHeight: 1.3 }} >
-                        {movieData?.overview ?? ''}
+                        {movieData.overview ?? ''}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: '10px' }}>
                     <Typography fontSize='20px' sx={{ lineHeight: 1.3 }} >
-                        Released on {movieData?.release_date}
+                        Released on {movieData.release_date}
                     </Typography>
                 </Box>
                 <Box sx={{ display: 'flex', gap: '10px' }}>

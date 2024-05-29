@@ -1,20 +1,19 @@
-import './App.css';
 import { QueryClient, QueryClientProvider } from 'react-query'
 import NavBar from "./components/NavBar";
 import { Provider } from 'react-redux';
 import store from "./store";
-import AppRoutes from '../src/AppRoutes';
+import AppRoutes from './routes/AppRoutes';
 
 const queryClient = new QueryClient()
 
 function App() {
 
   return (
-    <div className="App">
+    <div>
         <QueryClientProvider client={queryClient}>
             <Provider store={store}>
-            <NavBar />
-            <AppRoutes/>
+              <NavBar />
+              <AppRoutes/>
             </Provider >
         </QueryClientProvider>
 

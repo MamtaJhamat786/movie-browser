@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import Movies from './views/Movies'
-import SingleMovie from './views/SingleMovie';
+import Movies from '../views/Movies'
+import SingleMovie from '../views/SingleMovie';
 
 const AppRoutes: React.FC = () => {
   return (

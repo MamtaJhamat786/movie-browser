@@ -1,6 +1,5 @@
 import React from 'react';
 import { CardMedia } from '@mui/material';
-import placeholderImage from '../assets/images/no_image.png'; // Some image that show no  image for that movie
 
 interface CardMediaProps {
     styles: Object,
@@ -9,6 +8,7 @@ interface CardMediaProps {
     backdropPath?: string,
     posterPath?: string,
 }
+const placeholderImage = `${process.env.PUBLIC_URL}/assets/images/no_image.png`;
 
 const CustomCardMedia: React.FC<CardMediaProps> = ({ backdropPath, posterPath, apiBaseImageUrl, styles, title }) => {
     const imageUrl = backdropPath || posterPath ? `${apiBaseImageUrl}${backdropPath ?? posterPath}` : placeholderImage;

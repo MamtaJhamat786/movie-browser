@@ -1,9 +1,16 @@
-import { config } from '../config';
-import { MOVIE } from './types'
+import { useQuery, UseQueryResult } from 'react-query';
 
+import { Movie } from '../types'
+import { config } from '../../config';
 
-export const  getMovieById = async (movieId: number): Promise<MOVIE>=> {
-    const {  apiKey, apiFindByIdUrl } = config;
+const {  apiKey, apiFindByIdUrl } = config;
+
+export const useGetMovieById = (movieId: number): UseQueryResult<Movie, Error>=> {
+    return useQuery(['movies'], () => getMovieById(movieId));
+};
+
+export const  getMovieById = async (movieId: number): Promise<Movie>=> {
+
     const url = `${apiFindByIdUrl}/${movieId}?api_key=${apiKey}`;
     try {
         const response = await fetch(url);
