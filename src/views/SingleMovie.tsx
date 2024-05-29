@@ -1,12 +1,12 @@
 import React from "react";
-import { useParams } from 'react-router-dom';
-import { useGetMovieById } from '../apis/hooks/useGetMovieById';
-import CustomCardMedia from '../components/CustomCardMedia'
+import { useParams } from "react-router-dom";
+import { useGetMovieById } from "../apis/hooks/useGetMovieById";
+import CustomCardMedia from "../components/CustomCardMedia";
 import { addItemToBag } from "../store/active/reducer";
 
 import { useAppDispatch, useAppSelector } from "../store";
-import { config } from '../config';
-import '../Movies.scss'
+import { config } from "../config";
+import '../styles.scss';
 
 const { apiBaseImageUrl } = config;
 

@@ -1,3 +1,8 @@
+$primary-color:  rgb(22, 110, 232);
+$gray-color:  rgb(211, 211, 211);
+$white-color:  rgb(255, 255, 255);
+$antiquewhite-color:  rgb(250, 235, 215);
+
 @media(max-width: 600px) {
     .img-card-content{
         flex-direction: column-reverse;
@@ -13,7 +18,7 @@
 .movies-container {
     width: inherit;
     margin-top: 15px;
-    background-color: white;
+    background-color: $white-color;
     padding: 10px;
 }
 .img-grid{
@@ -24,7 +29,7 @@
     overflow-x: scroll;
 }
 .img-card{
-    border: 1px solid lightgray;
+    border: 1px solid $gray-color;
     border-radius: 4px;
 }
 .img-styles{
@@ -50,9 +55,9 @@
     justify-content: center;
 }
 .add-to-cart{
-    background-color: rgb(22, 110, 232);
+    background-color: $primary-color;
     border: transparent;
-    color: white;
+    color: $white-color;
     border-radius: 5px;
     height: 34px;
     padding: 12px;
@@ -102,13 +107,13 @@
 }
 .field-input{
     padding: 9px 6px;
-    border: 1px solid lightgray;
+    border: 1px solid $gray-color;
     height: 24px;
     border-radius: 5px;
 }
 .app-bar {
     position: static;
-    background: antiquewhite;
+    background: $antiquewhite-color;
     padding: 0 20px;
 }
 .circular-progress-box{

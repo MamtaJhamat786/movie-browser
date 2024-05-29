@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { Typography, CircularProgress } from '@mui/material';
 import '@testing-library/jest-dom';
-import { Provider } from 'react-redux';
 import store from '../store'; 
 import Movies from '../views/Movies';
 

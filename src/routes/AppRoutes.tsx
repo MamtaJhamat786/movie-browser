@@ -5,11 +5,11 @@ import SingleMovie from '../views/SingleMovie';
 
 const AppRoutes: React.FC = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Movies />} />
-      <Route path="/movies" element={<Movies />} />
-      <Route path="/movies/:id" element={<SingleMovie />} />
-    </Routes>
+      <Routes>
+        <Route path="/" element={<Movies />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:id" element={<SingleMovie />} />
+      </Routes>
   );
 };
 

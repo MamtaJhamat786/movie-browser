@@ -1,17 +1,16 @@
 import React, { useState, useCallback, useEffect } from "react";
 import {  Pagination, CircularProgress } from "@mui/material";
-import CustomCardMedia from '../components/CustomCardMedia';
+import CustomCardMedia from "../components/CustomCardMedia";
 import { Link } from "react-router-dom";
-import { DEBOUNCE_DELAY } from '../constants';
-import { useDebounce } from 'use-debounce';
-import { Movie } from '../apis/types';
+import { DEBOUNCE_DELAY } from "../constants";
+import { useDebounce } from "use-debounce";
+import { Movie } from "../apis/types";
 import { useAppDispatch } from "../store";
 import { config } from '../config';
 import { setMovieInfo } from "../store/active/reducer";
 import { useGetAllMovies } from "../apis/hooks/useGetAllMovies";
-import  ErrorBoundary  from '../components/ErrorBoundary'
-import '../Movies.scss'
-
+import  ErrorBoundary  from "../components/ErrorBoundary";
+import '../styles.scss';
 
 // static data outside of component
 const { apiBaseImageUrl } = config;
@@ -50,8 +49,6 @@ const Movies: React.FC = () => {
         }
     }, [data?.total_pages]);
     
-    
-
     useEffect(() => {
         setPageInput(String(page)); // Sync input with page state on data change
     }, [page]);

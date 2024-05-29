@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { setMovieInfo } from "../store/active/reducer";
 import { useAppDispatch, useAppSelector } from "../store";
-import '../Movies.scss'
+import '../styles.scss'
 
 export const NavBar :React.FC =()=> {
     const item= useAppSelector((s)=> s.active.itemsInBag)
