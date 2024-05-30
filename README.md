@@ -43,6 +43,6 @@ Make sure you have Node.js and npm (Node Package Manager) installed on your mach
 ### Technologies Used
     React.js: A JavaScript library for building user interfaces.
     React Router: Declarative routing for React applications.
-    Material-UI: A popular React UI framework for building responsive and accessible UI components.
+    Material-UI: Used Pagination and CircularProgress to extra effort.
     React Query: A library for managing server state in React applications.
     Redux: For managing state 
