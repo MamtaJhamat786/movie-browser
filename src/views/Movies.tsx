@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, memo } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Pagination } from "@mui/material";
 import { useDebounce } from "use-debounce";
 import { DEBOUNCE_DELAY } from "../constants"
@@ -72,4 +72,4 @@ const Movies: React.FC = () => {
   );
 };
 
-export default memo(Movies);
+export default React.memo(Movies);

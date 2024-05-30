@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetMovieById } from "../apis/hooks/useGetMovieById";
 import CustomCardMedia from "../components/CustomCardMedia";
@@ -45,7 +45,7 @@ const SingleMovie: React.FC = () => {
         </div>
         <div className="flex gap-10">
           <span className="font-20" >
-                        Released on {movieData.release_date}
+            Released on {movieData.release_date}
           </span>
         </div>
         <div className="flex gap-10">
@@ -53,7 +53,7 @@ const SingleMovie: React.FC = () => {
             className="font-16 flex align-center min-width-24 add-to-cart"
             onClick={handleAddToBag}
           >
-                        Buy Tickets
+            Buy Tickets
           </button>
 
         </div>
@@ -62,4 +62,4 @@ const SingleMovie: React.FC = () => {
   );
 }
 
-export default memo(SingleMovie);
+export default React.memo(SingleMovie);
