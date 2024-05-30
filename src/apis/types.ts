@@ -6,7 +6,7 @@ export interface Movies {
     total_results: number
     
   }
-  export interface Movie {
+export interface Movie {
     adult:             boolean;
     backdrop_path:     string;
     genre_ids:         number[];

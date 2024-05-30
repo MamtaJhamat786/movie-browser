@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import type { TypedUseSelectorHook } from 'react-redux';
-import { useDispatch, useSelector } from 'react-redux';
-import active from './active/reducer';
+import { configureStore } from "@reduxjs/toolkit";
+import type { TypedUseSelectorHook } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import active from "./active/reducer";
 
 const store = configureStore({
-    reducer: {
-        active,
-    },
+  reducer: {
+    active,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;

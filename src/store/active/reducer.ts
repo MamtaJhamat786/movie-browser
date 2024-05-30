@@ -1,30 +1,24 @@
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { createSlice } from '@reduxjs/toolkit';
-import { Movie } from '../../apis/types'
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 interface InitialState{
-    itemsInBag: number,
-    movieInfo: Movie | undefined;
+  itemsInBag: number
 }
 
 const initialState: InitialState = {
-    itemsInBag: 0,
-    movieInfo: undefined
+  itemsInBag: 0
 }
 
 const active = createSlice({
-    name: 'darkMode',
-    initialState: initialState,
-    reducers: {
-        addItemToBag: (state, action: PayloadAction<number>) => {
-            state.itemsInBag= action.payload;
-        },
-        setMovieInfo:(state, action: PayloadAction<Movie | undefined>)=>{
-            state.movieInfo = action.payload
-        }
-    },
+  name: "darkMode",
+  initialState: initialState,
+  reducers: {
+    addItemToBag: (state, action: PayloadAction<number>) => {
+      state.itemsInBag= action.payload;
+    }
+  },
 });
 
-export const { addItemToBag, setMovieInfo } = active.actions;
+export const { addItemToBag } = active.actions;
 
 export default active.reducer;
